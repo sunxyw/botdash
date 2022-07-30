@@ -1,5 +1,5 @@
 <template>
-  <!-- Projects Table Card -->
+  <!-- 机器人列表表格 -->
   <a-card
     :bordered="false"
     class="header-solid h-full"
@@ -8,38 +8,29 @@
     <template #title>
       <a-row type="flex" align="middle">
         <a-col :span="24" :md="12">
-          <h6>Projects</h6>
-          <p>done this month <span class="text-primary">+40%</span></p>
-        </a-col>
-        <a-col
-          :span="24"
-          :md="12"
-          style="display: flex; align-items: center; justify-content: flex-end"
-        >
-          <a-radio-group v-model="projectHeaderBtns" size="small">
-            <a-radio-button value="all">ALL</a-radio-button>
-            <a-radio-button value="online">ONLINE</a-radio-button>
-            <a-radio-button value="stores">STORES</a-radio-button>
-          </a-radio-group>
+          <h6>机器人列表</h6>
+          <p>数据可能存在延迟</p>
         </a-col>
       </a-row>
     </template>
     <a-table :columns="columns" :data-source="data" :pagination="false">
       <a-space
-        slot="members"
-        slot-scope="members"
+        slot="client"
+        slot-scope="client"
         :size="-12"
         class="avatar-chips"
       >
-        <template v-for="member in members">
-          <a-avatar :key="member" size="small" :src="member" />
-        </template>
+        <a-avatar size="small" :src="getClientLogo(client)" />
       </a-space>
 
-      <template slot="company" slot-scope="company">
+      <template slot="bot" slot-scope="bot">
         <h6 class="m-0">
-          <img :src="company.logo" width="25" class="mr-10" />
-          {{ company.name }}
+          <img
+            :src="`https://unpkg.com/simple-icons@v7/icons/${bot.type}.svg`"
+            width="25"
+            class="mr-10"
+          />
+          {{ bot.name }}
         </h6>
       </template>
 
@@ -72,11 +63,11 @@
             fill="#111827"
           />
         </svg>
-        Upload New Project
+        添加机器人
       </a-button>
     </div>
   </a-card>
-  <!-- / Projects Table Card -->
+  <!-- / 机器人列表表格 -->
 </template>
 
 <script>
@@ -93,9 +84,21 @@ export default {
   },
   data() {
     return {
-      // Active button for the "Projects" table's card header radio button group.
+      // 头部按钮选项
       projectHeaderBtns: "all",
     };
+  },
+  methods: {
+    getClientLogo(client) {
+      switch (client) {
+        case "go-cqhttp":
+          return "https://user-images.githubusercontent.com/25968335/120111974-8abef880-c139-11eb-99cd-fa928348b198.png";
+        case "oicq":
+          return "https://avatars.githubusercontent.com/u/12014361";
+        default:
+          return "https://user-images.githubusercontent.com/25968335/120111974-8abef880-c139-11eb-99cd-fa928348b198.png";
+      }
+    },
   },
 };
 </script>

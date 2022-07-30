@@ -1,9 +1,5 @@
-<!-- 
-	This is the main page of the application, the layout component is used here,
-	and the router-view is passed to it.
-	Layout component is dynamically declared based on the layout for each route,
-	specified in routes list router/index.js .
- -->
+<!-- 这是一切的起源，布局在此应用，路由视图在此显示 -->
+<!-- 布局组件由路由列表中定义的模板动态应用 -->
 
 <template>
   <div id="app">
@@ -16,10 +12,9 @@
 <script>
 export default {
   computed: {
-    // Sets components name based on current route's specified layout, defaults to
-    // <layout-default></layout-default> component.
+    // 基于当前路由指定布局，默认为<layout-default></layout-default>组件。
     layout() {
-      return "layout-" + (this.$route.meta.layout || "default").toLowerCase();
+      return "layout-" + (this.$route.meta.layout || "dashboard").toLowerCase();
     },
   },
 };

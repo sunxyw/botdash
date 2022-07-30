@@ -1,11 +1,6 @@
-<!-- 
-	This is the dashboard page, it uses the dashboard layout in: 
-	"./layouts/Dashboard.vue" .
- -->
-
 <template>
   <div>
-    <!-- Counter Widgets -->
+    <!-- 统计组件 -->
     <a-row :gutter="24">
       <a-col
         :span="24"
@@ -15,7 +10,7 @@
         v-for="(stat, index) in stats"
         :key="index"
       >
-        <!-- Widget 1 Card -->
+        <!-- 统计项 -->
         <WidgetCounter
           :title="stat.title"
           :value="stat.value"
@@ -24,257 +19,138 @@
           :icon="stat.icon"
           :status="stat.status"
         ></WidgetCounter>
-        <!-- / Widget 1 Card -->
+        <!-- / 统计项 -->
       </a-col>
     </a-row>
-    <!-- / Counter Widgets -->
+    <!-- / 统计组件 -->
 
-    <!-- Charts -->
+    <!-- 表格和时间轴 -->
     <a-row :gutter="24" type="flex" align="stretch">
-      <a-col :span="24" :lg="10" class="mb-24">
-        <!-- Active Users Card -->
-        <CardBarChart></CardBarChart>
-        <!-- Active Users Card -->
-      </a-col>
-      <a-col :span="24" :lg="14" class="mb-24">
-        <!-- Sales Overview Card -->
-        <CardLineChart></CardLineChart>
-        <!-- / Sales Overview Card -->
-      </a-col>
-    </a-row>
-    <!-- / Charts -->
-
-    <!-- Table & Timeline -->
-    <a-row :gutter="24" type="flex" align="stretch">
-      <!-- Table -->
+      <!-- 表格 -->
       <a-col :span="24" :lg="16" class="mb-24">
-        <!-- Projects Table Card -->
-        <CardProjectTable
-          :data="tableData"
-          :columns="tableColumns"
-        ></CardProjectTable>
-        <!-- / Projects Table Card -->
+        <!-- 机器人列表 -->
+        <CardBotTable :data="tableData" :columns="tableColumns"></CardBotTable>
+        <!-- / 机器人列表 -->
       </a-col>
-      <!-- / Table -->
+      <!-- / 表格 -->
 
-      <!-- Timeline -->
+      <!-- 时间轴 -->
       <a-col :span="24" :lg="8" class="mb-24">
-        <!-- Orders History Timeline Card -->
-        <CardOrderHistory></CardOrderHistory>
-        <!-- / Orders History Timeline Card -->
+        <!-- 事件列表 -->
+        <CardEventHistory></CardEventHistory>
+        <!-- / 事件列表 -->
       </a-col>
-      <!-- / Timeline -->
+      <!-- / 时间轴 -->
     </a-row>
-    <!-- / Table & Timeline -->
-
-    <!-- Cards -->
-    <a-row :gutter="24" type="flex" align="stretch">
-      <a-col :span="24" :xl="14" class="mb-24">
-        <!-- Information Card 1 -->
-        <CardInfo></CardInfo>
-        <!-- / Information Card 1 -->
-      </a-col>
-      <a-col :span="24" :xl="10" class="mb-24">
-        <!-- Information Card 2 -->
-        <CardInfo2></CardInfo2>
-        <!-- / Information Card 2 -->
-      </a-col>
-    </a-row>
-    <!-- / Cards -->
+    <!-- / 表格和时间轴 -->
   </div>
 </template>
 
 <script>
-// Bar chart for "Active Users" card.
-import CardBarChart from "../components/Cards/CardBarChart";
-
-// Line chart for "Sales Overview" card.
-import CardLineChart from "../components/Cards/CardLineChart";
-
-// Counter Widgets
 import WidgetCounter from "../components/Widgets/WidgetCounter";
+import CardBotTable from "../components/Cards/CardBotTable";
+import CardEventHistory from "../components/Cards/CardEventHistory";
 
-// "Projects" table component.
-import CardProjectTable from "../components/Cards/CardProjectTable";
-
-// Order History card component.
-import CardOrderHistory from "../components/Cards/CardOrderHistory";
-
-// Information card 1.
-import CardInfo from "../components/Cards/CardInfo";
-
-// Information card 2.
-import CardInfo2 from "../components/Cards/CardInfo2";
-
-// Counter Widgets stats
+// 统计信息
 const stats = [
   {
-    title: "Today’s Sales",
-    value: 53000,
-    prefix: "$",
-    suffix: "+30%",
+    title: "在线客户端",
+    value: 2,
     icon: `
-						<svg width="22" height="22" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M8.43338 7.41784C8.58818 7.31464 8.77939 7.2224 9 7.15101L9.00001 8.84899C8.77939 8.7776 8.58818 8.68536 8.43338 8.58216C8.06927 8.33942 8 8.1139 8 8C8 7.8861 8.06927 7.66058 8.43338 7.41784Z" fill="#111827"/>
-							<path d="M11 12.849L11 11.151C11.2206 11.2224 11.4118 11.3146 11.5666 11.4178C11.9308 11.6606 12 11.8861 12 12C12 12.1139 11.9308 12.3394 11.5666 12.5822C11.4118 12.6854 11.2206 12.7776 11 12.849Z" fill="#111827"/>
-							<path fill-rule="evenodd" clip-rule="evenodd" d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18ZM11 5C11 4.44772 10.5523 4 10 4C9.44772 4 9 4.44772 9 5V5.09199C8.3784 5.20873 7.80348 5.43407 7.32398 5.75374C6.6023 6.23485 6 7.00933 6 8C6 8.99067 6.6023 9.76515 7.32398 10.2463C7.80348 10.5659 8.37841 10.7913 9.00001 10.908L9.00002 12.8492C8.60902 12.7223 8.31917 12.5319 8.15667 12.3446C7.79471 11.9275 7.16313 11.8827 6.74599 12.2447C6.32885 12.6067 6.28411 13.2382 6.64607 13.6554C7.20855 14.3036 8.05956 14.7308 9 14.9076L9 15C8.99999 15.5523 9.44769 16 9.99998 16C10.5523 16 11 15.5523 11 15L11 14.908C11.6216 14.7913 12.1965 14.5659 12.676 14.2463C13.3977 13.7651 14 12.9907 14 12C14 11.0093 13.3977 10.2348 12.676 9.75373C12.1965 9.43407 11.6216 9.20873 11 9.09199L11 7.15075C11.391 7.27771 11.6808 7.4681 11.8434 7.65538C12.2053 8.07252 12.8369 8.11726 13.254 7.7553C13.6712 7.39335 13.7159 6.76176 13.354 6.34462C12.7915 5.69637 11.9405 5.26915 11 5.09236V5Z" fill="#111827"/>
-						</svg>`,
+            <svg width="22" height="22" fill="none" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+              <path d="M160 352h192V160H160V352zM448 176h48C504.8 176 512 168.8 512 160s-7.162-16-16-16H448V128c0-35.35-28.65-64-64-64h-16V16C368 7.164 360.8 0 352 0c-8.836 0-16 7.164-16 16V64h-64V16C272 7.164 264.8 0 256 0C247.2 0 240 7.164 240 16V64h-64V16C176 7.164 168.8 0 160 0C151.2 0 144 7.164 144 16V64H128C92.65 64 64 92.65 64 128v16H16C7.164 144 0 151.2 0 160s7.164 16 16 16H64v64H16C7.164 240 0 247.2 0 256s7.164 16 16 16H64v64H16C7.164 336 0 343.2 0 352s7.164 16 16 16H64V384c0 35.35 28.65 64 64 64h16v48C144 504.8 151.2 512 160 512c8.838 0 16-7.164 16-16V448h64v48c0 8.836 7.164 16 16 16c8.838 0 16-7.164 16-16V448h64v48c0 8.836 7.164 16 16 16c8.838 0 16-7.164 16-16V448H384c35.35 0 64-28.65 64-64v-16h48c8.838 0 16-7.164 16-16s-7.162-16-16-16H448v-64h48C504.8 272 512 264.8 512 256s-7.162-16-16-16H448V176zM384 368c0 8.836-7.162 16-16 16h-224C135.2 384 128 376.8 128 368v-224C128 135.2 135.2 128 144 128h224C376.8 128 384 135.2 384 144V368z"/>
+            </svg>`,
   },
   {
-    title: "Today’s Users",
+    title: "下行信息数",
     value: 3200,
-    suffix: "+20%",
     icon: `
-						<svg width="22" height="22" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M9 6C9 7.65685 7.65685 9 6 9C4.34315 9 3 7.65685 3 6C3 4.34315 4.34315 3 6 3C7.65685 3 9 4.34315 9 6Z" fill="#111827"/>
-							<path d="M17 6C17 7.65685 15.6569 9 14 9C12.3431 9 11 7.65685 11 6C11 4.34315 12.3431 3 14 3C15.6569 3 17 4.34315 17 6Z" fill="#111827"/>
-							<path d="M12.9291 17C12.9758 16.6734 13 16.3395 13 16C13 14.3648 12.4393 12.8606 11.4998 11.6691C12.2352 11.2435 13.0892 11 14 11C16.7614 11 19 13.2386 19 16V17H12.9291Z" fill="#111827"/>
-							<path d="M6 11C8.76142 11 11 13.2386 11 16V17H1V16C1 13.2386 3.23858 11 6 11Z" fill="#111827"/>
-						</svg>`,
+						<svg width="22" height="22" fill="none" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+              <path d="M256 417.1c-16.38 0-32.88-4.1-46.88-15.12L0 250.9v213.1C0 490.5 21.5 512 48 512h416c26.5 0 48-21.5 48-47.1V250.9l-209.1 151.1C288.9 412 272.4 417.1 256 417.1zM493.6 163C484.8 156 476.4 149.5 464 140.1v-44.12c0-26.5-21.5-48-48-48l-77.5 .0016c-3.125-2.25-5.875-4.25-9.125-6.5C312.6 29.13 279.3-.3732 256 .0018C232.8-.3732 199.4 29.13 182.6 41.5c-3.25 2.25-6 4.25-9.125 6.5L96 48c-26.5 0-48 21.5-48 48v44.12C35.63 149.5 27.25 156 18.38 163C6.75 172 0 186 0 200.8v10.62l96 69.37V96h320v184.7l96-69.37V200.8C512 186 505.3 172 493.6 163zM176 255.1h160c8.836 0 16-7.164 16-15.1c0-8.838-7.164-16-16-16h-160c-8.836 0-16 7.162-16 16C160 248.8 167.2 255.1 176 255.1zM176 191.1h160c8.836 0 16-7.164 16-16c0-8.838-7.164-15.1-16-15.1h-160c-8.836 0-16 7.162-16 15.1C160 184.8 167.2 191.1 176 191.1z"/>
+            </svg>`,
   },
   {
-    title: "New Clients",
+    title: "上行操作数",
     value: 1200,
-    prefix: "+",
-    status: "danger",
-    suffix: "-20%",
     icon: `
-						<svg width="22" height="22" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path fill-rule="evenodd" clip-rule="evenodd" d="M3.17157 5.17157C4.73367 3.60948 7.26633 3.60948 8.82843 5.17157L10 6.34315L11.1716 5.17157C12.7337 3.60948 15.2663 3.60948 16.8284 5.17157C18.3905 6.73367 18.3905 9.26633 16.8284 10.8284L10 17.6569L3.17157 10.8284C1.60948 9.26633 1.60948 6.73367 3.17157 5.17157Z" fill="#111827"/>
-						</svg>`,
+						<svg width="22" height="22" fill="none" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.372 86.63C-3.124 74.13-3.124 53.87 9.372 41.37C21.87 28.88 42.13 28.88 54.63 41.37L246.6 233.4C259.1 245.9 259.1 266.1 246.6 278.6L54.63 470.6C42.13 483.1 21.87 483.1 9.372 470.6C-3.124 458.1-3.124 437.9 9.372 425.4L178.7 256L9.372 86.63zM544 416C561.7 416 576 430.3 576 448C576 465.7 561.7 480 544 480H256C238.3 480 224 465.7 224 448C224 430.3 238.3 416 256 416H544z"/>
+            </svg>`,
   },
   {
-    title: "New Orders",
+    title: "处理事件数",
     value: 13200,
-    prefix: "$",
-    suffix: "+10%",
     icon: `
-						<svg width="22" height="22" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path fill-rule="evenodd" clip-rule="evenodd" d="M10 2C7.79086 2 6 3.79086 6 6V7H5C4.49046 7 4.06239 7.38314 4.00612 7.88957L3.00612 16.8896C2.97471 17.1723 3.06518 17.455 3.25488 17.6669C3.44458 17.8789 3.71556 18 4 18H16C16.2844 18 16.5554 17.8789 16.7451 17.6669C16.9348 17.455 17.0253 17.1723 16.9939 16.8896L15.9939 7.88957C15.9376 7.38314 15.5096 7 15 7H14V6C14 3.79086 12.2091 2 10 2ZM12 7V6C12 4.89543 11.1046 4 10 4C8.89543 4 8 4.89543 8 6V7H12ZM6 10C6 9.44772 6.44772 9 7 9C7.55228 9 8 9.44772 8 10C8 10.5523 7.55228 11 7 11C6.44772 11 6 10.5523 6 10ZM13 9C12.4477 9 12 9.44772 12 10C12 10.5523 12.4477 11 13 11C13.5523 11 14 10.5523 14 10C14 9.44772 13.5523 9 13 9Z" fill="#111827"/>
-						</svg>`,
+						<svg width="22" height="22" fill="none" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+              <path d="M399.36,362.23c29.49-34.69,47.1-78.34,47.1-125.79C446.46,123.49,346.86,32,224,32S1.54,123.49,1.54,236.44,101.14,440.87,224,440.87a239.28,239.28,0,0,0,79.44-13.44,7.18,7.18,0,0,1,8.12,2.56c18.58,25.09,47.61,42.74,79.89,49.92a4.42,4.42,0,0,0,5.22-3.43,4.37,4.37,0,0,0-.85-3.62,87,87,0,0,1,3.69-110.69ZM329.52,212.4l-57.3,43.49L293,324.75a6.5,6.5,0,0,1-9.94,7.22L224,290.92,164.94,332a6.51,6.51,0,0,1-9.95-7.22l20.79-68.86-57.3-43.49a6.5,6.5,0,0,1,3.8-11.68l71.88-1.51,23.66-67.92a6.5,6.5,0,0,1,12.28,0l23.66,67.92,71.88,1.51a6.5,6.5,0,0,1,3.88,11.68Z"/>
+            </svg>`,
   },
 ];
 
-// "Projects" table list of columns and their properties.
+// 机器人列表表格列的属性
 const tableColumns = [
   {
-    title: "COMPANIES",
-    dataIndex: "company",
-    scopedSlots: { customRender: "company" },
+    title: "机器人",
+    dataIndex: "bot",
+    scopedSlots: { customRender: "bot" },
     width: 300,
   },
   {
-    title: "MEMBERS",
-    dataIndex: "members",
-    scopedSlots: { customRender: "members" },
+    title: "客户端",
+    dataIndex: "client",
+    scopedSlots: { customRender: "client" },
   },
   {
-    title: "BUDGET",
-    dataIndex: "budget",
+    title: "处理事件数",
+    dataIndex: "events",
     class: "font-bold text-muted text-sm",
   },
   {
-    title: "COMPLETION",
+    title: "负载",
     scopedSlots: { customRender: "completion" },
     dataIndex: "completion",
   },
 ];
 
-// "Projects" table list of rows and their properties.
+// 机器人列表数据
 const tableData = [
   {
     key: "1",
-    company: {
-      name: "Soft UI Shopify Version",
-      logo: "images/logos/logo-shopify.svg",
+    bot: {
+      name: "温暖之风",
+      type: "tencentqq",
     },
-    members: [
-      "images/face-1.jpg",
-      "images/face-4.jpg",
-      "images/face-2.jpg",
-      "images/face-3.jpg",
-    ],
-    budget: "$14,000",
+    client: "go-cqhttp",
+    events: "14,000",
     completion: 60,
   },
   {
     key: "2",
-    company: {
-      name: "Progress Track",
-      logo: "images/logos/logo-atlassian.svg",
+    bot: {
+      name: "不寒之冬",
+      type: "telegram",
     },
-    members: ["images/face-4.jpg", "images/face-3.jpg"],
-    budget: "$3,000",
-    completion: 10,
+    client: "go-cqhttp",
+    events: "13,000",
+    completion: 30,
   },
   {
     key: "3",
-    company: {
-      name: "Fix Platform Errors",
-      logo: "images/logos/logo-slack.svg",
+    bot: {
+      name: "明媚之夜",
+      type: "discord",
     },
-    members: ["images/face-1.jpg", "images/face-2.jpg", "images/face-3.jpg"],
-    budget: "Not Set",
-    completion: {
-      label: "100",
-      status: "success",
-      value: 100,
-    },
-  },
-  {
-    key: "4",
-    company: {
-      name: "Launch new Mobile App",
-      logo: "images/logos/logo-spotify.svg",
-    },
-    members: ["images/face-1.jpg", "images/face-2.jpg"],
-    budget: "$20,600",
-    completion: {
-      label: "100",
-      status: "success",
-      value: 100,
-    },
-  },
-  {
-    key: "5",
-    company: {
-      name: "Add the New Landing Page",
-      logo: "images/logos/logo-jira.svg",
-    },
-    members: [
-      "images/face-1.jpg",
-      "images/face-4.jpg",
-      "images/face-2.jpg",
-      "images/face-3.jpg",
-    ],
-    budget: "$4,000",
-    completion: 80,
-  },
-  {
-    key: "6",
-    company: {
-      name: "Redesign Online Store",
-      logo: "images/logos/logo-invision.svg",
-    },
-    members: ["images/face-1.jpg", "images/face-4.jpg", "images/face-3.jpg"],
-    budget: "$2,000",
-    completion: {
-      label: "Cancelled",
-      status: "exception",
-      value: 100,
-    },
+    client: "go-cqhttp",
+    events: "12,000",
+    completion: 10,
   },
 ];
 
 export default {
   components: {
-    CardBarChart,
-    CardLineChart,
     WidgetCounter,
-    CardProjectTable,
-    CardOrderHistory,
-    CardInfo,
-    CardInfo2,
+    CardBotTable,
+    CardEventHistory,
   },
   data() {
     return {

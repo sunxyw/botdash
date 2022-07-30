@@ -1,40 +1,40 @@
 <template>
-  <!-- Orders History Timeline Card -->
+  <!-- 事件列表 -->
   <a-card
     :bordered="false"
     class="header-solid h-full"
     :bodyStyle="{ paddingTop: '12px' }"
   >
     <template #title>
-      <h6>Orders History</h6>
-      <p>this month <span class="text-success">+20%</span></p>
+      <h6>事件历史</h6>
+      <p>数据并非实时</p>
     </template>
-    <a-timeline pending="Recording..." :reverse="timelineReverse">
+    <a-timeline pending="记录中..." :reverse="timelineReverse">
       <a-timeline-item color="green">
-        $2,400 - Redesign store
-        <p>09 JUN 7:20 PM</p>
+        事件
+        <p>时间</p>
       </a-timeline-item>
       <a-timeline-item color="green">
-        New order #3654323
-        <p>08 JUN 12:20 PM</p>
+        事件
+        <p>时间</p>
       </a-timeline-item>
       <a-timeline-item color="blue">
-        Company server payments
-        <p>04 JUN 3:10 PM</p>
+        事件
+        <p>时间</p>
       </a-timeline-item>
       <a-timeline-item color="blue">
-        New card added for order #4826321
-        <p>02 JUN 2:45 PM</p>
+        事件
+        <p>时间</p>
       </a-timeline-item>
       <a-timeline-item color="blue">
-        Unlock folders for development
-        <p>18 MAY 1:30 PM</p>
+        事件
+        <p>时间</p>
       </a-timeline-item>
       <a-timeline-item color="gray">
-        New order #46282344
-        <p>14 MAY 3:30 PM</p>
+        事件
+        <p>时间</p>
       </a-timeline-item>
-      <template #pendingDot> </template>
+      <template #pendingDot></template>
     </a-timeline>
     <a-button
       type="primary"
@@ -92,10 +92,10 @@
           fill="#111827"
         />
       </svg>
-      REVERSE
+      反转
     </a-button>
   </a-card>
-  <!-- / Orders History Timeline Card -->
+  <!-- / 事件列表 -->
 </template>
 
 <script>

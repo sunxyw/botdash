@@ -5,36 +5,34 @@ Vue.use(VueRouter);
 
 let routes = [
   {
-    // will match everything
+    // 匹配一切路由
     path: "*",
     component: () => import("../views/404Page.vue"),
   },
   {
+    // 首页，默认跳转到 /dashboard
     path: "/",
-    name: "Home",
+    name: "首页",
     redirect: "/dashboard",
   },
   {
     path: "/dashboard",
-    name: "Dashboard",
+    name: "仪表盘",
     layout: "dashboard",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "dashboard" */ "../views/DashboardPage.vue"),
+    component: () => import("../views/DashboardPage.vue"),
   },
   {
-    path: "/layout",
-    name: "Layout",
+    path: "/bots",
+    name: "机器人管理",
     layout: "dashboard",
     component: () => import("../views/LayoutPage.vue"),
   },
   {
-    path: "/tables",
-    name: "Tables",
+    path: "/dependencies",
+    name: "依赖管理",
     layout: "dashboard",
-    component: () => import("../views/TablesPage.vue"),
+    component: () =>
+      import(/* webpackChunkName: "dependencies" */ "../views/TablesPage.vue"),
   },
   {
     path: "/Profile",
@@ -47,8 +45,7 @@ let routes = [
   },
 ];
 
-// Adding layout property from each route to the meta
-// object so it can be accessed later.
+// 添加layout属性到每个路由的meta属性，以便可以访问
 function addLayoutToRoute(route, parentLayout = "default") {
   route.meta = route.meta || {};
   route.meta.layout = route.layout || parentLayout;

@@ -20,7 +20,7 @@
               fill="#111827"
             />
           </svg>
-          by <a href="https://creative-tim.com">Dev Teams</a> for a better
+          by <a href="https://creative-tim.com">Dev Team</a> for a better
           ecosystem.
         </p>
         <!-- / 尾部版权提示 -->

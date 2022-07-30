@@ -3,7 +3,7 @@ module.exports = {
 
   chainWebpack: (config) => {
     config.plugin("html").tap((args) => {
-      args[0].title = "Muse Vue Ant Design - by Creative Tim";
+      args[0].title = "BotDash - 机器人管理面板";
       return args;
     });
   },
