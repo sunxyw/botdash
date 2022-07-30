@@ -51,7 +51,7 @@
         </router-link>
       </a-menu-item>
       <a-menu-item>
-        <router-link to="/tables">
+        <router-link to="/bots">
           <span class="icon">
             <svg width="20" height="20" fill="none" viewBox="0 0 640 512">
               <path
@@ -63,7 +63,7 @@
         </router-link>
       </a-menu-item>
       <a-menu-item>
-        <router-link to="/billing">
+        <router-link to="/dependencies">
           <span class="icon">
             <svg width="20" height="20" fill="none" viewBox="0 0 512 512">
               <path

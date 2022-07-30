@@ -25,23 +25,13 @@ let routes = [
     path: "/bots",
     name: "机器人管理",
     layout: "dashboard",
-    component: () => import("../views/LayoutPage.vue"),
+    component: () => import("../views/DashboardPage.vue"),
   },
   {
     path: "/dependencies",
     name: "依赖管理",
     layout: "dashboard",
-    component: () =>
-      import(/* webpackChunkName: "dependencies" */ "../views/TablesPage.vue"),
-  },
-  {
-    path: "/Profile",
-    name: "Profile",
-    layout: "dashboard",
-    meta: {
-      layoutClass: "layout-profile",
-    },
-    component: () => import("../views/ProfilePage.vue"),
+    component: () => import("../views/DashboardPage.vue"),
   },
 ];
 
