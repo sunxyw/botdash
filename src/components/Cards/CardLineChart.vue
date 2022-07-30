@@ -29,7 +29,6 @@ export default {
           {
             label: "Mobile apps",
             tension: 0.4,
-            borderWidth: 0,
             pointRadius: 0,
             borderColor: "#1890FF",
             borderWidth: 3,
@@ -39,7 +38,6 @@ export default {
           {
             label: "Websites",
             tension: 0.4,
-            borderWidth: 0,
             pointRadius: 0,
             borderColor: "#B37FEB",
             borderWidth: 3,

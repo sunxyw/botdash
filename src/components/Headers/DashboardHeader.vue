@@ -259,7 +259,9 @@ export default {
       // Reason for the negative value is that it doesn't activate the affix unless
       // scroller is anywhere but the top of the page.
     },
-    onSearch(value) {},
+    onSearch(value) {
+      console.log("search", value);
+    },
   },
   mounted: function () {
     // Set the wrapper to the proper element, layout wrapper.

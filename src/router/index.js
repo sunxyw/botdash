@@ -7,7 +7,7 @@ let routes = [
   {
     // will match everything
     path: "*",
-    component: () => import("../views/404.vue"),
+    component: () => import("../views/404Page.vue"),
   },
   {
     path: "/",
@@ -22,34 +22,19 @@ let routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "dashboard" */ "../views/Dashboard.vue"),
+      import(/* webpackChunkName: "dashboard" */ "../views/DashboardPage.vue"),
   },
   {
     path: "/layout",
     name: "Layout",
     layout: "dashboard",
-    component: () => import("../views/Layout.vue"),
+    component: () => import("../views/LayoutPage.vue"),
   },
   {
     path: "/tables",
     name: "Tables",
     layout: "dashboard",
-    component: () => import("../views/Tables.vue"),
-  },
-  {
-    path: "/billing",
-    name: "Billing",
-    layout: "dashboard",
-    component: () => import("../views/Billing.vue"),
-  },
-  {
-    path: "/rtl",
-    name: "RTL",
-    layout: "dashboard-rtl",
-    meta: {
-      layoutClass: "dashboard-rtl",
-    },
-    component: () => import("../views/RTL.vue"),
+    component: () => import("../views/TablesPage.vue"),
   },
   {
     path: "/Profile",
@@ -58,20 +43,7 @@ let routes = [
     meta: {
       layoutClass: "layout-profile",
     },
-    component: () => import("../views/Profile.vue"),
-  },
-  {
-    path: "/sign-in",
-    name: "Sign-In",
-    component: () => import("../views/Sign-In.vue"),
-  },
-  {
-    path: "/sign-up",
-    name: "Sign-Up",
-    meta: {
-      layoutClass: "layout-sign-up",
-    },
-    component: () => import("../views/Sign-Up.vue"),
+    component: () => import("../views/ProfilePage.vue"),
   },
 ];
 
@@ -95,7 +67,7 @@ const router = new VueRouter({
   mode: "hash",
   base: process.env.BASE_URL,
   routes,
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior(to) {
     if (to.hash) {
       return {
         selector: to.hash,

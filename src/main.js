@@ -15,9 +15,9 @@ import Vue from "vue";
 import Antd from "ant-design-vue";
 import "ant-design-vue/dist/antd.css";
 import App from "./App.vue";
-import DefaultLayout from "./layouts/Default.vue";
-import DashboardLayout from "./layouts/Dashboard.vue";
-import DashboardRTLLayout from "./layouts/DashboardRTL.vue";
+import DefaultLayout from "./layouts/DefaultLayout.vue";
+import DashboardLayout from "./layouts/DashboardLayout.vue";
+import DashboardRTLLayout from "./layouts/DashboardRTLLayout.vue";
 import router from "./router";
 // import './plugins/click-away'
 
