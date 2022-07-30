@@ -9,7 +9,7 @@
           <!-- 面包屑导航 -->
           <a-breadcrumb>
             <a-breadcrumb-item
-              ><router-link to="/"> 页面</router-link></a-breadcrumb-item
+              ><router-link to="/"> 面板</router-link></a-breadcrumb-item
             >
             <a-breadcrumb-item>{{ this.$route.name }}</a-breadcrumb-item>
           </a-breadcrumb>
@@ -134,34 +134,13 @@
               />
             </svg>
           </a-button>
-          <router-link
-            to="/sign-in"
-            class="btn-sign-in"
-            @click="(e) => e.preventDefault()"
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M18 10C18 14.4183 14.4183 18 10 18C5.58172 18 2 14.4183 2 10C2 5.58172 5.58172 2 10 2C14.4183 2 18 5.58172 18 10ZM12 7C12 8.10457 11.1046 9 10 9C8.89543 9 8 8.10457 8 7C8 5.89543 8.89543 5 10 5C11.1046 5 12 5.89543 12 7ZM9.99993 11C7.98239 11 6.24394 12.195 5.45374 13.9157C6.55403 15.192 8.18265 16 9.99998 16C11.8173 16 13.4459 15.1921 14.5462 13.9158C13.756 12.195 12.0175 11 9.99993 11Z"
-                fill="#111827"
-              />
-            </svg>
-            <span>Sign In</span>
-          </router-link>
           <!-- / 头部控制按钮 -->
 
           <!-- 头部搜索输入 -->
           <a-input-search
             class="header-search"
             :class="searchLoading ? 'loading' : ''"
-            placeholder="Type here…"
+            placeholder="搜索内容..."
             @search="onSearch"
             :loading="searchLoading"
           >
@@ -255,25 +234,23 @@ export default {
   methods: {
     resizeEventHandler() {
       this.top = this.top ? 0 : -0.01;
-      // To refresh the header if the window size changes.
-      // Reason for the negative value is that it doesn't activate the affix unless
-      // scroller is anywhere but the top of the page.
+      // 用于在窗口大小改变时刷新头部
+      // 负值是因为它不会激活 affix，除非滚动条位于顶部之外。
     },
     onSearch(value) {
       console.log("search", value);
     },
   },
   mounted: function () {
-    // Set the wrapper to the proper element, layout wrapper.
+    // 将下拉框包装元素设置为正确的元素
     this.wrapper = document.getElementById("layout-dashboard");
   },
   created() {
-    // Registering window resize event listener to fix affix elements size
-    // error while resizing.
+    // 注册窗口大小改变事件，以解决affix元素大小改变时出现的错误。
     window.addEventListener("resize", this.resizeEventHandler);
   },
   destroyed() {
-    // Removing window resize event listener.
+    // 移除窗口大小改变事件监听器
     window.removeEventListener("resize", this.resizeEventHandler);
   },
 };

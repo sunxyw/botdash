@@ -15,9 +15,7 @@ import Vue from "vue";
 import Antd from "ant-design-vue";
 import "ant-design-vue/dist/antd.css";
 import App from "./App.vue";
-import DefaultLayout from "./layouts/DefaultLayout.vue";
 import DashboardLayout from "./layouts/DashboardLayout.vue";
-import DashboardRTLLayout from "./layouts/DashboardRTLLayout.vue";
 import router from "./router";
 // import './plugins/click-away'
 
@@ -28,9 +26,7 @@ Vue.use(Antd);
 Vue.config.productionTip = false;
 
 // Adding template layouts to the vue components.
-Vue.component("layout-default", DefaultLayout);
 Vue.component("layout-dashboard", DashboardLayout);
-Vue.component("layout-dashboard-rtl", DashboardRTLLayout);
 
 new Vue({
   router,

@@ -5,7 +5,7 @@
       <a-col :span="24" :md="12">
         <!-- 尾部版权提示 -->
         <p class="copyright">
-          © 2021, made with
+          © 2022, made with
           <svg
             width="20"
             height="20"
@@ -20,18 +20,17 @@
               fill="#111827"
             />
           </svg>
-          by <a href="https://creative-tim.com">Creative Tim</a> for a better
-          web.
+          by <a href="https://creative-tim.com">Dev Teams</a> for a better
+          ecosystem.
         </p>
         <!-- / 尾部版权提示 -->
       </a-col>
       <a-col :span="24" :md="12" class="footer-control">
         <!-- 尾部导航菜单 -->
         <a-menu mode="horizontal">
-          <a-menu-item>Creative Tim</a-menu-item>
-          <a-menu-item>About Us</a-menu-item>
-          <a-menu-item>Blog</a-menu-item>
-          <a-menu-item>License</a-menu-item>
+          <a-menu-item>开发团队</a-menu-item>
+          <a-menu-item>项目地址</a-menu-item>
+          <a-menu-item>开源协议</a-menu-item>
         </a-menu>
         <!-- / 尾部导航菜单 -->
       </a-col>
