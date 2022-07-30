@@ -1,5 +1,5 @@
 <template>
-  <!-- Main Sidebar -->
+  <!-- 侧边栏 -->
   <a-layout-sider
     collapsible
     class="sider-primary"
@@ -17,11 +17,11 @@
     :style="{ backgroundColor: 'transparent' }"
   >
     <div class="brand">
-      <img src="images/logo-ct-black.png" alt="" /> <span>Muse Dashboard</span>
+      <img src="images/logo-ct-black.png" alt="" /> <span>BotDash</span>
     </div>
     <hr />
 
-    <!-- Sidebar Navigation Menu -->
+    <!-- 侧边栏导航菜单 -->
     <a-menu theme="light" mode="inline">
       <a-menu-item>
         <router-link to="/dashboard">
@@ -47,7 +47,7 @@
               />
             </svg>
           </span>
-          <span class="label">Dashboard</span>
+          <span class="label">面板</span>
         </router-link>
       </a-menu-item>
       <a-menu-item>
@@ -217,9 +217,9 @@
         </router-link>
       </a-menu-item>
     </a-menu>
-    <!-- / Sidebar Navigation Menu -->
+    <!-- / 侧边栏导航菜单 -->
 
-    <!-- Sidebar Footer -->
+    <!-- 侧边栏尾部 -->
     <div class="aside-footer">
       <div class="footer-box">
         <span class="icon">
@@ -244,19 +244,19 @@
             />
           </svg>
         </span>
-        <h6>Need Help?</h6>
-        <p>Please check our docs</p>
+        <h6>开发机器人？</h6>
+        <p>来看看炸毛吧</p>
         <a-button
           type="primary"
           href="https://demos.creative-tim.com/muse-vue-ant-design-dashboard/documentation"
           block
           target="_blank"
         >
-          DOCUMENTATION
+          炸毛框架
         </a-button>
       </div>
     </div>
-    <!-- / Sidebar Footer -->
+    <!-- / 侧边栏尾部 -->
 
     <a-button
       type="primary"
@@ -264,28 +264,28 @@
       block
       target="_blank"
     >
-      UPGRADE TO PRO
+      客户支持
     </a-button>
   </a-layout-sider>
-  <!-- / Main Sidebar -->
+  <!-- / 侧边栏 -->
 </template>
 
 <script>
 export default {
   props: {
-    // Sidebar collapsed status.
+    // 侧边栏折叠状态
     sidebarCollapsed: {
       type: Boolean,
       default: false,
     },
 
-    // Main sidebar color.
+    // 侧边栏颜色
     sidebarColor: {
       type: String,
       default: "primary",
     },
 
-    // Main sidebar theme : light, white, dark.
+    // 侧边栏主题：light, white, dark
     sidebarTheme: {
       type: String,
       default: "light",

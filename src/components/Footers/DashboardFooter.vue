@@ -1,9 +1,9 @@
 <template>
-  <!-- Layout Footer -->
+  <!-- 布局尾部 -->
   <a-layout-footer>
     <a-row type="flex">
       <a-col :span="24" :md="12">
-        <!-- Footer Copyright Notice -->
+        <!-- 尾部版权提示 -->
         <p class="copyright">
           © 2021, made with
           <svg
@@ -23,21 +23,21 @@
           by <a href="https://creative-tim.com">Creative Tim</a> for a better
           web.
         </p>
-        <!-- / Footer Copyright Notice -->
+        <!-- / 尾部版权提示 -->
       </a-col>
       <a-col :span="24" :md="12" class="footer-control">
-        <!-- Footer Navigation Menu -->
+        <!-- 尾部导航菜单 -->
         <a-menu mode="horizontal">
           <a-menu-item>Creative Tim</a-menu-item>
           <a-menu-item>About Us</a-menu-item>
           <a-menu-item>Blog</a-menu-item>
           <a-menu-item>License</a-menu-item>
         </a-menu>
-        <!-- / Footer Navigation Menu -->
+        <!-- / 尾部导航菜单 -->
       </a-col>
     </a-row>
   </a-layout-footer>
-  <!-- / Layout Footer -->
+  <!-- / 布局尾部 -->
 </template>
 
 <script>

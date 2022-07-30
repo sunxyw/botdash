@@ -1,10 +1,8 @@
-<!-- 
-	This is the dashboard layout, used in dashboard, tables, billing and profile pages.
- -->
+<!-- 主模板 -->
 
 <template>
   <div>
-    <!-- Dashboard Layout -->
+    <!-- 面板布局 -->
     <a-layout
       class="layout-dashboard"
       id="layout-dashboard"
@@ -14,37 +12,37 @@
         layoutClass,
       ]"
     >
-      <!-- Main Sidebar -->
+      <!-- 侧边栏 -->
       <DashboardSidebar
         :sidebarCollapsed="sidebarCollapsed"
         :sidebarColor="sidebarColor"
         :sidebarTheme="sidebarTheme"
         @toggleSidebar="toggleSidebar"
       ></DashboardSidebar>
-      <!-- / Main Sidebar -->
+      <!-- / 侧边栏 -->
 
-      <!-- Layout Content -->
+      <!-- 布局内容 -->
       <a-layout>
-        <!-- Layout Header's Conditionally Fixed Wrapper -->
+        <!-- 布局头部（条件性固定） -->
         <DashboardHeader
           :sidebarCollapsed="sidebarCollapsed"
           :navbarFixed="navbarFixed"
           @toggleSettingsDrawer="toggleSettingsDrawer"
           @toggleSidebar="toggleSidebar"
         ></DashboardHeader>
-        <!-- / Layout Header's Conditionally Fixed Wrapper -->
+        <!-- / 布局头部（条件性固定） -->
 
-        <!-- Page Content -->
+        <!-- 页面内容 -->
         <a-layout-content>
           <router-view />
         </a-layout-content>
-        <!-- / Page Content -->
+        <!-- / 页面内容 -->
 
-        <!-- Layout Footer -->
+        <!-- 布局尾部 -->
         <DashboardFooter></DashboardFooter>
-        <!-- / Layout Footer -->
+        <!-- / 布局尾部 -->
 
-        <!-- Floating Action Button For Toggling Settings Drawer -->
+        <!-- 浮动按钮（设定菜单） -->
         <a-button class="fab" shape="circle" @click="showSettingsDrawer = true">
           <svg
             width="20"
@@ -61,19 +59,19 @@
             />
           </svg>
         </a-button>
-        <!-- / Floating Action Button For Toggling Settings Drawer -->
+        <!-- / 浮动按钮（设定菜单） -->
 
-        <!-- Sidebar Overlay -->
+        <!-- 侧边栏遮罩 -->
         <div
           class="sidebar-overlay"
           @click="sidebarCollapsed = true"
           v-show="!sidebarCollapsed"
         ></div>
-        <!-- / Sidebar Overlay -->
+        <!-- / 侧边栏遮罩 -->
       </a-layout>
-      <!-- / Layout Content -->
+      <!-- / 布局内容 -->
 
-      <!-- Settings Drawer -->
+      <!-- 设定菜单 -->
       <DashboardSettingsDrawer
         :showSettingsDrawer="showSettingsDrawer"
         :navbarFixed="navbarFixed"
@@ -83,9 +81,9 @@
         @updateSidebarTheme="updateSidebarTheme"
         @updateSidebarColor="updateSidebarColor"
       ></DashboardSettingsDrawer>
-      <!-- / Settings Drawer -->
+      <!-- / 设定菜单 -->
     </a-layout>
-    <!-- / Dashboard Layout -->
+    <!-- / 面板布局 -->
   </div>
 </template>
 
@@ -104,19 +102,19 @@ export default {
   },
   data() {
     return {
-      // Sidebar collapsed status.
+      // 侧边栏折叠状态
       sidebarCollapsed: false,
 
-      // Main sidebar color.
+      // 侧边栏颜色
       sidebarColor: "primary",
 
-      // Main sidebar theme : light, white, dark.
+      // 侧边栏主题：light, white, dark
       sidebarTheme: "light",
 
-      // Header fixed status.
+      // 头部固定状态
       navbarFixed: false,
 
-      // Settings drawer visiblility status.
+      // 设定菜单显示状态
       showSettingsDrawer: false,
     };
   },
@@ -138,7 +136,7 @@ export default {
     },
   },
   computed: {
-    // Sets layout's element's class based on route's meta data.
+    // 根据路由数据设置布局的样式类
     layoutClass() {
       return this.$route.meta.layoutClass;
     },

@@ -1,33 +1,33 @@
 <template>
-  <!-- Main Sidebar -->
+  <!-- 侧边栏 -->
   <component :is="navbarFixed ? 'a-affix' : 'div'" :offset-top="top">
-    <!-- Layout Header -->
+    <!-- 布局头部 -->
     <a-layout-header>
       <a-row type="flex">
-        <!-- Header Breadcrumbs & Title Column -->
+        <!-- 头部标题列 -->
         <a-col :span="24" :md="6">
-          <!-- Header Breadcrumbs -->
+          <!-- 面包屑导航 -->
           <a-breadcrumb>
             <a-breadcrumb-item
-              ><router-link to="/"> Pages</router-link></a-breadcrumb-item
+              ><router-link to="/"> 页面</router-link></a-breadcrumb-item
             >
             <a-breadcrumb-item>{{ this.$route.name }}</a-breadcrumb-item>
           </a-breadcrumb>
-          <!-- / Header Breadcrumbs -->
+          <!-- / 面包屑导航 -->
 
-          <!-- Header Page Title -->
+          <!-- 头部页面标题 -->
           <div class="ant-page-header-heading">
             <span class="ant-page-header-heading-title">{{
               this.$route.name
             }}</span>
           </div>
-          <!-- / Header Page Title -->
+          <!-- / 头部页面标题 -->
         </a-col>
-        <!-- / Header Breadcrumbs & Title Column -->
+        <!-- / 头部标题列 -->
 
-        <!-- Header Control Column -->
+        <!-- 头部控制列 -->
         <a-col :span="24" :md="18" class="header-control">
-          <!-- Header Control Buttons -->
+          <!-- 头部控制按钮 -->
           <a-dropdown
             :trigger="['click']"
             overlayClassName="header-notifications-dropdown"
@@ -155,9 +155,9 @@
             </svg>
             <span>Sign In</span>
           </router-link>
-          <!-- / Header Control Buttons -->
+          <!-- / 头部控制按钮 -->
 
-          <!-- Header Search Input -->
+          <!-- 头部搜索输入 -->
           <a-input-search
             class="header-search"
             :class="searchLoading ? 'loading' : ''"
@@ -181,14 +181,14 @@
               />
             </svg>
           </a-input-search>
-          <!-- / Header Search Input -->
+          <!-- / 头部搜索输入 -->
         </a-col>
-        <!-- / Header Control Column -->
+        <!-- / 头部控制列 -->
       </a-row>
     </a-layout-header>
-    <!--  /Layout Header -->
+    <!--  / 布局头部 -->
   </component>
-  <!-- / Main Sidebar -->
+  <!-- / 侧边栏 -->
 </template>
 
 <script>
@@ -222,19 +222,19 @@ const notificationsData = [
 
 export default {
   props: {
-    // Header fixed status.
+    // 头部固定状态
     navbarFixed: {
       type: Boolean,
       default: false,
     },
 
-    // Sidebar collapsed status.
+    // 侧边栏折叠状态
     sidebarCollapsed: {
       type: Boolean,
       default: false,
     },
 
-    // Header notifications data.
+    // 头部通知数据
     notificationsData: {
       type: Array,
       default: () => notificationsData,
@@ -242,13 +242,13 @@ export default {
   },
   data() {
     return {
-      // Fixed header/sidebar-footer ( Affix component ) top offset.
+      // 固定头部/侧边栏尾部（附加组件）顶部偏移
       top: 0,
 
-      // Search input loading status.
+      // 搜索输入加载状态
       searchLoading: false,
 
-      // The wrapper element to attach dropdowns to.
+      // 要将下拉列表附加到的包装器元素
       wrapper: document.body,
     };
   },

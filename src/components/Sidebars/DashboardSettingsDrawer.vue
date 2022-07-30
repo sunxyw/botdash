@@ -1,5 +1,5 @@
 <template>
-  <!-- Settings Drawer -->
+  <!-- 设定菜单 -->
   <a-drawer
     class="settings-drawer"
     :class="[rtl ? 'settings-drawer-rtl' : '']"
@@ -10,7 +10,7 @@
     :getContainer="() => wrapper"
     @close="$emit('toggleSettingsDrawer', false)"
   >
-    <!-- Settings Drawer Close Button -->
+    <!-- 设定菜单关闭按钮 -->
     <a-button
       type="link"
       class="btn-close"
@@ -47,15 +47,15 @@
         </g>
       </svg>
     </a-button>
-    <!-- / Settings Drawer Close Button -->
+    <!-- / 设定菜单关闭按钮 -->
 
-    <!-- Settings Drawer Content -->
+    <!-- 设定菜单内容 -->
     <div class="drawer-content">
-      <h6>Configurator</h6>
-      <p>See our dashboard options.</p>
+      <h6>设定</h6>
+      <p>面板选项</p>
       <hr />
       <div class="sidebar-color">
-        <h6>Sidebar Color</h6>
+        <h6>侧边栏颜色</h6>
         <a-radio-group
           v-model="sidebarColorModel"
           @change="$emit('updateSidebarColor', $event.target.value)"
@@ -73,20 +73,19 @@
         </a-radio-group>
       </div>
       <div class="sidenav-type">
-        <h6>Sidenav Type</h6>
-        <p>Choose between 2 different sidenav types.</p>
+        <h6>侧边栏类型</h6>
         <a-radio-group
           button-style="solid"
           v-model="sidebarThemeModel"
           @change="$emit('updateSidebarTheme', $event.target.value)"
           defaultValue="primary"
         >
-          <a-radio-button value="light">TRANSPARENT</a-radio-button>
-          <a-radio-button value="white">WHITE</a-radio-button>
+          <a-radio-button value="light">透明</a-radio-button>
+          <a-radio-button value="white">白色</a-radio-button>
         </a-radio-group>
       </div>
       <div class="navbar-fixed">
-        <h6>Navbar Fixed</h6>
+        <h6>固定导航栏</h6>
         <a-switch
           default-checked
           v-model="navbarFixedModel"
@@ -164,9 +163,9 @@
         </div>
       </div>
     </div>
-    <!-- / Settings Drawer Content -->
+    <!-- / 设定面板内容 -->
   </a-drawer>
-  <!-- / Settings Drawer -->
+  <!-- / 设定面板 -->
 </template>
 
 <script>
