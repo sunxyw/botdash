@@ -45,5 +45,6 @@ export default {
   data() {
     return {};
   },
+  emits: ["update:value"],
 };
 </script>

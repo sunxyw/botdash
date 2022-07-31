@@ -1,10 +1,7 @@
-<!-- 这是一切的起源，布局在此应用，路由视图在此显示 -->
-<!-- 布局组件由路由列表中定义的模板动态应用 -->
-
 <template>
   <div id="app">
     <component :is="layout">
-      <router-view />
+      <router-view></router-view>
     </component>
   </div>
 </template>
@@ -19,5 +16,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss"></style>

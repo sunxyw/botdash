@@ -1,12 +1,9 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-
-Vue.use(VueRouter);
+import * as VueRouter from "vue-router";
 
 let routes = [
   {
     // 匹配一切路由
-    path: "*",
+    path: "/:pathMatch(.*)*",
     component: () => import("../views/404Page.vue"),
   },
   {
@@ -50,9 +47,8 @@ function addLayoutToRoute(route, parentLayout = "default") {
 
 routes = routes.map((route) => addLayoutToRoute(route));
 
-const router = new VueRouter({
-  mode: "hash",
-  base: process.env.BASE_URL,
+const router = VueRouter.createRouter({
+  history: VueRouter.createWebHashHistory(process.env.BASE_URL),
   routes,
   scrollBehavior(to) {
     if (to.hash) {
@@ -61,11 +57,7 @@ const router = new VueRouter({
         behavior: "smooth",
       };
     }
-    return {
-      x: 0,
-      y: 0,
-      behavior: "smooth",
-    };
+    return { left: 0, top: 0, behavior: "smooth" };
   },
 });
 

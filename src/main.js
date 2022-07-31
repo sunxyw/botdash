@@ -1,4 +1,4 @@
-import Vue from "vue";
+import * as Vue from "vue";
 import Antd from "ant-design-vue";
 import "ant-design-vue/dist/antd.css";
 import App from "./App.vue";
@@ -8,14 +8,15 @@ import router from "./router";
 
 import "./scss/app.scss";
 
-Vue.use(Antd);
+window.$vueApp = Vue.createApp(App);
 
-Vue.config.productionTip = false;
+window.$vueApp.use(Antd);
+window.$vueApp.use(router);
 
 // Adding template layouts to the vue components.
-Vue.component("layout-dashboard", DashboardLayout);
+window.$vueApp.component("layout-dashboard", DashboardLayout);
 
-new Vue({
-  router,
-  render: (h) => h(App),
-}).$mount("#app");
+window.$vueApp.mount("#app");
+window.$vueApp.config.globalProperties.routerAppend = (path, pathToAppend) => {
+  return path + (path.endsWith("/") ? "" : "/") + pathToAppend;
+};

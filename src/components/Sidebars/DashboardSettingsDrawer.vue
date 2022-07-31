@@ -115,9 +115,6 @@
           >查阅开发文档</a-button
         >
       </div>
-      <div class="github-stars">
-        <gh-btns-star slug="sunxyw/botdash" show-count></gh-btns-star>
-      </div>
     </div>
     <!-- / 设定面板内容 -->
   </a-drawer>
@@ -125,11 +122,6 @@
 </template>
 
 <script>
-import "vue-github-buttons/dist/vue-github-buttons.css"; // 样式
-import VueGitHubButtons from "vue-github-buttons";
-import Vue from "vue";
-Vue.use(VueGitHubButtons, { useCache: true });
-
 export default {
   props: {
     // 设定菜单显示状态
@@ -181,5 +173,11 @@ export default {
     // 将下拉框包装元素设置为正确的元素
     this.wrapper = document.getElementById("layout-dashboard");
   },
+  emits: [
+    "toggleSettingsDrawer",
+    "updateSidebarColor",
+    "updateSidebarTheme",
+    "toggleNavbarPosition",
+  ],
 };
 </script>

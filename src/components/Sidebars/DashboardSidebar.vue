@@ -150,5 +150,6 @@ export default {
       // sidebarCollapsedModel: this.sidebarCollapsed,
     };
   },
+  emits: ["toggleSidebar"],
 };
 </script>

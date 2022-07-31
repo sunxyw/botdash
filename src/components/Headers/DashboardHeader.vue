@@ -54,47 +54,46 @@
               </a>
             </a-badge>
 
-            <a-list
-              item-layout="horizontal"
-              class="header-notifications-list"
-              :data-source="notificationsData"
-              slot="overlay"
-            >
-              <a-list-item slot="renderItem" slot-scope="item">
-                <a-list-item-meta>
-                  <template #description>
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 20 20"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18ZM11 6C11 5.44772 10.5523 5 10 5C9.44772 5 9 5.44772 9 6V10C9 10.2652 9.10536 10.5196 9.29289 10.7071L12.1213 13.5355C12.5118 13.9261 13.145 13.9261 13.5355 13.5355C13.9261 13.145 13.9261 12.5118 13.5355 12.1213L11 9.58579V6Z"
-                        fill="#111827"
-                      />
-                    </svg>
-                    <span>{{ item.time }}</span>
-                  </template>
-                  <a slot="title" href="#">{{ item.title }}</a>
-                  <a-avatar
-                    v-if="item.img"
-                    slot="avatar"
-                    shape="square"
-                    :src="item.img"
-                  />
-                  <a-avatar
-                    v-else
-                    shape="square"
-                    slot="avatar"
-                    v-html="item.svg"
-                  />
-                </a-list-item-meta>
-              </a-list-item>
-            </a-list>
+            <template v-slot:overlay>
+              <a-list
+                item-layout="horizontal"
+                class="header-notifications-list"
+                :data-source="notificationsData"
+              >
+                <template v-slot:renderItem="item">
+                  <a-list-item>
+                    <a-list-item-meta>
+                      <template #description>
+                        <svg
+                          width="20"
+                          height="20"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18ZM11 6C11 5.44772 10.5523 5 10 5C9.44772 5 9 5.44772 9 6V10C9 10.2652 9.10536 10.5196 9.29289 10.7071L12.1213 13.5355C12.5118 13.9261 13.145 13.9261 13.5355 13.5355C13.9261 13.145 13.9261 12.5118 13.5355 12.1213L11 9.58579V6Z"
+                            fill="#111827"
+                          />
+                        </svg>
+                        <span>{{ item.time }}</span>
+                      </template>
+                      <template v-slot:title>
+                        <a href="#">{{ item.title }}</a>
+                      </template>
+                      <template v-slot:avatar v-if="item.img">
+                        <a-avatar shape="square" :src="item.img" />
+                      </template>
+                      <template v-slot:avatar v-else>
+                        <a-avatar shape="square" v-html="item.svg" />
+                      </template>
+                    </a-list-item-meta>
+                  </a-list-item>
+                </template>
+              </a-list>
+            </template>
           </a-dropdown>
           <a-button
             type="link"
@@ -144,21 +143,22 @@
             @search="onSearch"
             :loading="searchLoading"
           >
-            <svg
-              slot="prefix"
-              width="16"
-              height="16"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M8 4C5.79086 4 4 5.79086 4 8C4 10.2091 5.79086 12 8 12C10.2091 12 12 10.2091 12 8C12 5.79086 10.2091 4 8 4ZM2 8C2 4.68629 4.68629 2 8 2C11.3137 2 14 4.68629 14 8C14 9.29583 13.5892 10.4957 12.8907 11.4765L17.7071 16.2929C18.0976 16.6834 18.0976 17.3166 17.7071 17.7071C17.3166 18.0976 16.6834 18.0976 16.2929 17.7071L11.4765 12.8907C10.4957 13.5892 9.29583 14 8 14C4.68629 14 2 11.3137 2 8Z"
-                fill="#111827"
-              />
-            </svg>
+            <template v-slot:prefix>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M8 4C5.79086 4 4 5.79086 4 8C4 10.2091 5.79086 12 8 12C10.2091 12 12 10.2091 12 8C12 5.79086 10.2091 4 8 4ZM2 8C2 4.68629 4.68629 2 8 2C11.3137 2 14 4.68629 14 8C14 9.29583 13.5892 10.4957 12.8907 11.4765L17.7071 16.2929C18.0976 16.6834 18.0976 17.3166 17.7071 17.7071C17.3166 18.0976 16.6834 18.0976 16.2929 17.7071L11.4765 12.8907C10.4957 13.5892 9.29583 14 8 14C4.68629 14 2 11.3137 2 8Z"
+                  fill="#111827"
+                />
+              </svg>
+            </template>
           </a-input-search>
           <!-- / 头部搜索输入 -->
         </a-col>
@@ -249,9 +249,10 @@ export default {
     // 注册窗口大小改变事件，以解决affix元素大小改变时出现的错误。
     window.addEventListener("resize", this.resizeEventHandler);
   },
-  destroyed() {
+  unmounted() {
     // 移除窗口大小改变事件监听器
     window.removeEventListener("resize", this.resizeEventHandler);
   },
+  emits: ["toggleSettingsDrawer", "toggleSidebar"],
 };
 </script>

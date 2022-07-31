@@ -14,16 +14,13 @@
       </a-row>
     </template>
     <a-table :columns="columns" :data-source="data" :pagination="false">
-      <a-space
-        slot="client"
-        slot-scope="client"
-        :size="-12"
-        class="avatar-chips"
-      >
-        <a-avatar size="small" :src="getClientLogo(client)" />
-      </a-space>
+      <template v-slot:client="client">
+        <a-space :size="-12" class="avatar-chips">
+          <a-avatar size="small" :src="getClientLogo(client)" />
+        </a-space>
+      </template>
 
-      <template slot="bot" slot-scope="bot">
+      <template v-slot:bot="bot">
         <h6 class="m-0">
           <img
             :src="`https://unpkg.com/simple-icons@v7/icons/${bot.type}.svg`"
@@ -34,7 +31,7 @@
         </h6>
       </template>
 
-      <template slot="completion" slot-scope="completion">
+      <template v-slot:completion="completion">
         <span class="font-bold text-muted text-sm">{{
           completion.label ? completion.label : completion
         }}</span>

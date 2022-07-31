@@ -1,11 +1,8 @@
-// Click away event directive
-// Credits : https://medium.com/@Taha_Shashtari/an-easy-way-to-detect-clicks-outside-an-element-in-vue-1b51d43ff634
-import Vue from "vue";
 // This variable will hold the reference to
 // document's click handler
 let handleOutsideClick;
-Vue.directive("click-away", {
-  bind(el, binding, vnode) {
+window.$vueApp.directive("click-away", {
+  beforeMount(el, binding, vnode) {
     // Here's the click/touchstart handler
     // (it is registered below)
     handleOutsideClick = (e) => {
@@ -33,14 +30,14 @@ Vue.directive("click-away", {
         // If the clicked element is outside the dialog
         // and not the button, then call the outside-click handler
         // from the same component this directive is used in
-        vnode.context[handler]();
+        binding.instance[handler]();
       }
     };
     // Register click/touchstart event listeners on the whole page
     document.addEventListener("click", handleOutsideClick);
     document.addEventListener("touchstart", handleOutsideClick);
   },
-  unbind() {
+  unMounted() {
     // If the element that has v-click-away is removed, then
     // unbind click/touchstart listeners from the whole page
     document.removeEventListener("click", handleOutsideClick);
