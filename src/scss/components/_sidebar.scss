@@ -1,0 +1,10 @@
+.ant-menu-item {
+    & .ant-menu-title-content {
+        padding: 8px 14px;
+        padding-left: 0;
+
+        & > a {
+            display: block;
+        }
+    }
+}

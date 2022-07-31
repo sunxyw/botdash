@@ -76,7 +76,7 @@
         <h6>侧边栏类型</h6>
         <a-radio-group
           button-style="solid"
-          v-model="sidebarThemeModel"
+          v-model:checked="sidebarThemeModel"
           @change="$emit('updateSidebarTheme', $event.target.value)"
           defaultValue="primary"
         >
