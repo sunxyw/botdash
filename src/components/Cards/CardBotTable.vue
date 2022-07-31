@@ -14,33 +14,43 @@
       </a-row>
     </template>
     <a-table :columns="columns" :data-source="data" :pagination="false">
-      <template v-slot:client="client">
-        <a-space :size="-12" class="avatar-chips">
-          <a-avatar size="small" :src="getClientLogo(client)" />
-        </a-space>
-      </template>
+      <template #bodyCell="{ column, record }">
+        <template v-if="column.dataIndex === 'client'">
+          <a-space :size="-12" class="avatar-chips">
+            <a-avatar size="small" :src="getClientLogo(record.client)" />
+          </a-space>
+        </template>
 
-      <template v-slot:bot="bot">
-        <h6 class="m-0">
-          <img
-            :src="`https://unpkg.com/simple-icons@v7/icons/${bot.type}.svg`"
-            width="25"
-            class="mr-10"
+        <template v-else-if="column.dataIndex === 'bot'">
+          <h6 class="m-0">
+            <img
+              :src="`https://unpkg.com/simple-icons@v7/icons/${record.bot.type}.svg`"
+              width="25"
+              class="mr-10"
+            />
+            {{ record.bot.name }}
+          </h6>
+        </template>
+
+        <template v-else-if="column.dataIndex === 'completion'">
+          <span class="font-bold text-muted text-sm">{{
+            record.completion.label
+              ? record.completion.label
+              : record.completion
+          }}</span>
+          <a-progress
+            :percent="
+              record.completion.value
+                ? record.completion.value
+                : record.completion
+            "
+            :show-info="false"
+            size="small"
+            :status="
+              record.completion.status ? record.completion.status : 'normal'
+            "
           />
-          {{ bot.name }}
-        </h6>
-      </template>
-
-      <template v-slot:completion="completion">
-        <span class="font-bold text-muted text-sm">{{
-          completion.label ? completion.label : completion
-        }}</span>
-        <a-progress
-          :percent="completion.value ? completion.value : completion"
-          :show-info="false"
-          size="small"
-          :status="completion.status ? completion.status : 'normal'"
-        />
+        </template>
       </template>
     </a-table>
 
