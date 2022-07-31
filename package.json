@@ -16,6 +16,7 @@
     "axios": "^0.27.2",
     "chart.js": "3.8.2",
     "core-js": "^3.8.3",
+    "pinia": "^2.0.17",
     "tiny-emitter": "^2.1.0",
     "vue": "^3.0.0",
     "vue-axios": "^3.4.1",
@@ -36,6 +37,7 @@
     "prettier": "^2.4.1",
     "sass": "^1.54.0",
     "sass-loader": "^13.0.2",
+    "vue-cli-plugin-pinia": "~0.1.4",
     "webpack": "^5.74.0"
   },
   "license": "MIT"

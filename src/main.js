@@ -7,6 +7,7 @@ import router from "./router";
 // import './plugins/click-away'
 import axios from "axios";
 import VueAxios from "vue-axios";
+import { createPinia } from "pinia";
 
 import "./scss/app.scss";
 
@@ -15,6 +16,8 @@ window.$vueApp = Vue.createApp(App);
 window.$vueApp.use(Antd);
 window.$vueApp.use(router);
 window.$vueApp.use(VueAxios, axios);
+window.$vueApp.provide("axios", window.$vueApp.config.globalProperties.axios);
+window.$vueApp.use(createPinia());
 
 // Adding template layouts to the vue components.
 window.$vueApp.component("layout-dashboard", DashboardLayout);
