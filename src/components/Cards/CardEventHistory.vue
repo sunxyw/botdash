@@ -34,7 +34,6 @@
         事件
         <p>时间</p>
       </a-timeline-item>
-      <template #pendingDot></template>
     </a-timeline>
     <a-button
       type="primary"
@@ -102,8 +101,7 @@
 export default {
   data() {
     return {
-      // Whether or not the timeline in "Orders History" card is reversed.
-      timelineReverse: false,
+      timelineReverse: true,
     };
   },
 };
