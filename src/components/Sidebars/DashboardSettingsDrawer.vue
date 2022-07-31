@@ -88,7 +88,7 @@
         <h6>固定导航栏</h6>
         <a-switch
           default-checked
-          v-model="navbarFixedModel"
+          v-model:checked="navbarFixedModel"
           @change="$emit('toggleNavbarPosition', navbarFixedModel)"
         />
       </div>
@@ -162,14 +162,14 @@ export default {
       // 侧边栏颜色
       sidebarColorModel: this.sidebarColor,
 
-      //侧边栏主题：light, white, dark.
+      // 侧边栏主题：light, white, dark.
       sidebarThemeModel: this.sidebarTheme,
 
       // 头部固定状态
       navbarFixedModel: this.navbarFixed,
     };
   },
-  mounted: function () {
+  mounted() {
     // 将下拉框包装元素设置为正确的元素
     this.wrapper = document.getElementById("layout-dashboard");
   },

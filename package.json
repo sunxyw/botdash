@@ -12,8 +12,8 @@
   "main": "src/main.js",
   "dependencies": {
     "@vue/compat": "^3.2.37",
-    "ant-design-vue": "2",
-    "chart.js": "3.4.1",
+    "ant-design-vue": "3",
+    "chart.js": "3.8.2",
     "core-js": "^3.8.3",
     "tiny-emitter": "^2.1.0",
     "vue": "^3.0.0",
@@ -30,9 +30,11 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.0.3",
-    "node-sass": "6.0.1",
+    "node-sass": "7.0.1",
     "prettier": "^2.4.1",
-    "sass-loader": "^10"
+    "sass": "^1.54.0",
+    "sass-loader": "^13.0.2",
+    "webpack": "^5.74.0"
   },
   "license": "MIT"
 }

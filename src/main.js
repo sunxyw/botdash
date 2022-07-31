@@ -17,6 +17,5 @@ window.$vueApp.use(router);
 window.$vueApp.component("layout-dashboard", DashboardLayout);
 
 window.$vueApp.mount("#app");
-window.$vueApp.config.globalProperties.routerAppend = (path, pathToAppend) => {
-  return path + (path.endsWith("/") ? "" : "/") + pathToAppend;
-};
+window.$vueApp.config.globalProperties.routerAppend = (path, pathToAppend) =>
+  path + (path.endsWith("/") ? "" : "/") + pathToAppend;
