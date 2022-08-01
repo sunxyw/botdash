@@ -22,7 +22,7 @@ let routes = [
     path: "/bots",
     name: "机器人管理",
     layout: "dashboard",
-    component: () => import("../views/DashboardPage.vue"),
+    component: () => import("../views/BotsPage.vue"),
   },
   {
     path: "/dependencies",
