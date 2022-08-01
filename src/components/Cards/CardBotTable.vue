@@ -13,42 +13,41 @@
         </a-col>
       </a-row>
     </template>
-    <a-table :columns="columns" :data-source="data" :pagination="false">
+    <a-table
+      :columns="columns"
+      :data-source="data"
+      :pagination="false"
+      :loading="loading"
+    >
       <template #bodyCell="{ column, record }">
-        <template v-if="column.dataIndex === 'client'">
+        <template v-if="column.key === 'client'">
           <a-space :size="-12" class="avatar-chips">
-            <a-avatar size="small" :src="getClientLogo(record.client)" />
+            <a-avatar size="small" :src="getClientLogo(record.client.type)" />
           </a-space>
         </template>
 
-        <template v-else-if="column.dataIndex === 'bot'">
+        <template v-else-if="column.key === 'bot'">
           <h6 class="m-0">
             <img
-              :src="`https://unpkg.com/simple-icons@v7/icons/${record.bot.type}.svg`"
+              :src="
+                `https://unpkg.com/simple-icons@v7/icons/` +
+                getUnifiedBotType(record.type) +
+                `.svg`
+              "
               width="25"
               class="mr-10"
             />
-            {{ record.bot.name }}
+            {{ record.name }}
           </h6>
         </template>
 
-        <template v-else-if="column.dataIndex === 'completion'">
-          <span class="font-bold text-muted text-sm">{{
-            record.completion.label
-              ? record.completion.label
-              : record.completion
-          }}</span>
+        <template v-else-if="column.key === 'load'">
+          <span class="font-bold text-muted text-sm">{{ record.load }}</span>
           <a-progress
-            :percent="
-              record.completion.value
-                ? record.completion.value
-                : record.completion
-            "
+            :percent="record.load"
             :show-info="false"
             size="small"
-            :status="
-              record.completion.status ? record.completion.status : 'normal'
-            "
+            status="normal"
           />
         </template>
       </template>
@@ -78,25 +77,58 @@
 </template>
 
 <script>
+import { computed, onMounted, onUnmounted, ref } from "vue";
+import { useBotStore } from "@/store/bot";
+
 export default {
-  props: {
-    data: {
-      type: Array,
-      default: () => [],
-    },
-    columns: {
-      type: Array,
-      default: () => [],
-    },
-  },
-  data() {
-    return {
-      // 头部按钮选项
-      projectHeaderBtns: "all",
-    };
-  },
-  methods: {
-    getClientLogo(client) {
+  setup() {
+    const columns = [
+      {
+        key: "bot",
+        title: "机器人",
+        dataIndex: "name",
+        scopedSlots: { customRender: "bot" },
+        width: 300,
+      },
+      {
+        key: "client",
+        title: "客户端",
+        dataIndex: "client",
+        scopedSlots: { customRender: "client" },
+      },
+      {
+        key: "events",
+        title: "处理事件数",
+        dataIndex: "events_count",
+        class: "font-bold text-muted text-sm",
+      },
+      {
+        key: "load",
+        title: "负载",
+        scopedSlots: { customRender: "completion" },
+        dataIndex: "load",
+      },
+    ];
+
+    const loading = ref(true);
+
+    const botStore = useBotStore();
+    onMounted(() => {
+      botStore.loadBotList();
+      loading.value = false;
+    });
+    const data = computed(() => botStore.list);
+
+    const interval = setInterval(() => {
+      loading.value = true;
+      botStore.loadBotList();
+      loading.value = false;
+    }, 5000);
+    onUnmounted(() => {
+      clearInterval(interval);
+    });
+
+    const getClientLogo = (client) => {
       switch (client) {
         case "go-cqhttp":
           return "https://user-images.githubusercontent.com/25968335/120111974-8abef880-c139-11eb-99cd-fa928348b198.png";
@@ -105,7 +137,24 @@ export default {
         default:
           return "https://user-images.githubusercontent.com/25968335/120111974-8abef880-c139-11eb-99cd-fa928348b198.png";
       }
-    },
+    };
+
+    const getUnifiedBotType = (type) => {
+      switch (type) {
+        case "qq":
+          return "tencentqq";
+        default:
+          return type;
+      }
+    };
+
+    return {
+      columns,
+      data,
+      getClientLogo,
+      getUnifiedBotType,
+      loading,
+    };
   },
 };
 </script>
