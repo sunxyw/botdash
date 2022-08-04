@@ -54,7 +54,7 @@
     </a-table>
 
     <div class="table-upload-btn">
-      <a-button type="dashed" block>
+      <a-button type="dashed" block @click="modalOpen = true">
         <svg
           width="16"
           height="16"
@@ -74,13 +74,22 @@
     </div>
   </a-card>
   <!-- / 机器人列表表格 -->
+
+  <ModalBotForm
+    v-model:visible="modalOpen"
+    @ok="modalOpen = false"
+  ></ModalBotForm>
 </template>
 
 <script>
 import { computed, onMounted, onUnmounted, ref } from "vue";
 import { useBotStore } from "@/store/bot";
+import ModalBotForm from "../Modals/ModalBotForm";
 
 export default {
+  components: {
+    ModalBotForm,
+  },
   setup() {
     const columns = [
       {
@@ -148,12 +157,15 @@ export default {
       }
     };
 
+    const modalOpen = ref(false);
+
     return {
       columns,
       data,
       getClientLogo,
       getUnifiedBotType,
       loading,
+      modalOpen,
     };
   },
 };

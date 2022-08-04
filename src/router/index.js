@@ -1,4 +1,5 @@
 import * as VueRouter from "vue-router";
+import ls from "../utils/localStore";
 
 let routes = [
   {
@@ -10,7 +11,13 @@ let routes = [
     // 首页，默认跳转到 /dashboard
     path: "/",
     name: "首页",
-    redirect: "/dashboard",
+    get redirect() {
+      if (ls.get("apiUrl").length > 0) {
+        return "/dashboard";
+      } else {
+        return "/setup";
+      }
+    },
   },
   {
     path: "/dashboard",
@@ -29,6 +36,12 @@ let routes = [
     name: "依赖管理",
     layout: "dashboard",
     component: () => import("../views/DashboardPage.vue"),
+  },
+  {
+    path: "/setup",
+    name: "初始化",
+    component: () => import("../views/SetupPage.vue"),
+    layout: "simple",
   },
 ];
 

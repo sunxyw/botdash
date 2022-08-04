@@ -1,7 +1,8 @@
 import { message } from "ant-design-vue";
+import ls from "../utils/localStore";
 
 const api = window.$vueApp.$http.create({
-  baseURL: "http://127.0.0.1:4523/m1/1379808-0-default/",
+  baseURL: ls.get("apiUrl", "http://127.0.0.1:4523/m1/1379808-0-default"),
   timeout: 3000,
 });
 

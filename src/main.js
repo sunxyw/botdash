@@ -3,6 +3,7 @@ import Antd from "ant-design-vue";
 import "ant-design-vue/dist/antd.css";
 import App from "./App.vue";
 import DashboardLayout from "./layouts/DashboardLayout.vue";
+import SimpleLayout from "./layouts/SimpleLayout.vue";
 import router from "./router";
 // import './plugins/click-away'
 import axios from "axios";
@@ -21,6 +22,7 @@ window.$vueApp.use(createPinia());
 
 // Adding template layouts to the vue components.
 window.$vueApp.component("layout-dashboard", DashboardLayout);
+window.$vueApp.component("layout-simple", SimpleLayout);
 
 window.$vueApp.mount("#app");
 window.$vueApp.config.globalProperties.routerAppend = (path, pathToAppend) =>
