@@ -13,6 +13,7 @@
         </a-col>
       </a-row>
     </template>
+
     <a-table
       :columns="columns"
       :data-source="data"
@@ -20,18 +21,13 @@
       :loading="loading"
     >
       <template #bodyCell="{ column, record }">
-        <template v-if="column.key === 'client'">
-          <a-space :size="-12" class="avatar-chips">
-            <a-avatar size="small" :src="getClientLogo(record.client.type)" />
-          </a-space>
-        </template>
-
-        <template v-else-if="column.key === 'bot'">
+        <!-- 第一栏，展示平台图标和机器人名称 -->
+        <template v-if="column.key === 'bot'">
           <h6 class="m-0">
             <img
               :src="
                 `https://unpkg.com/simple-icons@v7/icons/` +
-                getUnifiedBotType(record.type) +
+                getUnifiedBotType(record.platform) +
                 `.svg`
               "
               width="25"
@@ -41,14 +37,28 @@
           </h6>
         </template>
 
-        <template v-else-if="column.key === 'load'">
-          <span class="font-bold text-muted text-sm">{{ record.load }}</span>
-          <a-progress
-            :percent="record.load"
-            :show-info="false"
-            size="small"
-            status="normal"
+        <!-- 第二栏，展示实现图标和名称和版本 -->
+        <template v-else-if="column.key === 'impl'">
+          <a-avatar size="small" :src="getClientLogo(record.impl)" />
+          <a-tag>{{ record.impl }}</a-tag>
+          <a-tag>{{ record.version }}</a-tag>
+        </template>
+
+        <!-- 第三栏，展示标准名称和版本 -->
+        <template v-else-if="column.key === 'standard'">
+          <a-tag>{{ record.standard.name }}</a-tag>
+          <a-tag>{{ record.standard.version }}</a-tag>
+        </template>
+
+        <!-- 第四栏，展示状态 -->
+        <template v-else-if="column.key === 'status'">
+          <a-badge status="success" text="运作良好" v-if="record.status.good" />
+          <a-badge
+            status="warning"
+            text="部分可用"
+            v-else-if="record.status.online"
           />
+          <a-badge status="error" text="不可用" v-else />
         </template>
       </template>
     </a-table>
@@ -100,22 +110,22 @@ export default {
         width: 300,
       },
       {
-        key: "client",
-        title: "客户端",
-        dataIndex: "client",
-        scopedSlots: { customRender: "client" },
+        key: "impl",
+        title: "实现",
+        dataIndex: "impl",
+        scopedSlots: { customRender: "impl" },
       },
       {
-        key: "events",
-        title: "处理事件数",
-        dataIndex: "events_count",
-        class: "font-bold text-muted text-sm",
+        key: "standard",
+        title: "协议（标准）",
+        dataIndex: "standard",
+        scopedSlots: { customRender: "standard" },
       },
       {
-        key: "load",
-        title: "负载",
-        scopedSlots: { customRender: "completion" },
-        dataIndex: "load",
+        key: "status",
+        title: "状态",
+        dataIndex: "status",
+        scopedSlots: { customRender: "status" },
       },
     ];
 
