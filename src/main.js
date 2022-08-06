@@ -10,6 +10,7 @@ import axios from "axios";
 import VueAxios from "vue-axios";
 import { createPinia } from "pinia";
 import $dayjs from "./plugins/dayjs";
+import "iconify-icon";
 
 import "./scss/app.scss";
 

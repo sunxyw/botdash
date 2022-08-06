@@ -29,7 +29,18 @@ let routes = [
     path: "/bots",
     name: "机器人管理",
     layout: "dashboard",
-    component: () => import("../views/BotsPage.vue"),
+    children: [
+      {
+        path: "list",
+        name: "机器人列表",
+        component: () => import("../views/bot/ListPage.vue"),
+      },
+      {
+        path: "new",
+        name: "新建机器人",
+        component: () => import("../views/bot/NewPage.vue"),
+      },
+    ],
   },
   {
     path: "/dependencies",

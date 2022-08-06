@@ -10,7 +10,9 @@
       :class="'text-' + status"
     >
     </a-statistic>
-    <div class="icon" v-html="icon"></div>
+    <div class="icon">
+      <iconify-icon :icon="icon" height="22" width="22"></iconify-icon>
+    </div>
   </a-card>
 </template>
 
@@ -48,3 +50,9 @@ export default {
   emits: ["update:value"],
 };
 </script>
+
+<style scoped>
+.icon {
+  color: #fff;
+}
+</style>

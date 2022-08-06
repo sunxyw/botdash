@@ -9,7 +9,7 @@
       @cancel="onCancel"
       destroyOnClose
     >
-      <a-steps :current="current" size="small" progress-dot>
+      <a-steps :current="current" size="small" progress-dot class="mb-20">
         <a-step v-for="item in steps" :key="item.title" :title="item.title" />
       </a-steps>
       <a-form
@@ -19,13 +19,24 @@
         name="form_in_modal"
       >
         <a-form-item name="id" label="ID" disabled>
-          <a-input v-model:value="formState.id" />
+          <a-input
+            v-model:value="formState.id"
+            defaultValue="（自动生成）"
+            disabled
+          />
         </a-form-item>
-        <a-form-item name="type" label="type">
-          <a-input v-model:value="formState.type" />
+        <a-form-item name="platform" label="平台">
+          <a-select
+            v-model:value="formState.platform"
+            :options="allowedPlatforms"
+            size="large"
+          ></a-select>
         </a-form-item>
-        <a-form-item name="name" label="name">
-          <a-input v-model:value="formState.name" />
+        <a-form-item name="impl" label="实现">
+          <a-input-group compact>
+            <a-input v-model:value="formState.impl" style="width: 50%" />
+            <a-input v-model:value="formState.version" style="width: 50%" />
+          </a-input-group>
         </a-form-item>
       </a-form>
     </a-modal>
@@ -33,7 +44,7 @@
 </template>
 <script>
 import { Modal } from "ant-design-vue";
-import { computed, defineComponent, reactive, ref, toRaw } from "vue";
+import { computed, defineComponent, ref, toRaw } from "vue";
 
 export default defineComponent({
   props: {
@@ -43,7 +54,8 @@ export default defineComponent({
       default: () => ({}),
     },
   },
-  setup(props) {
+  emits: ["submit"],
+  setup(props, { emit }) {
     const current = ref(0);
     const next = () => {
       current.value++;
@@ -68,11 +80,11 @@ export default defineComponent({
     ];
 
     const formRef = ref();
-    const formState = reactive(props.bot);
+    const formState = computed(() => props.bot);
 
     const onOkInternal = () => {
       if (current.value === steps.length - 1) {
-        props.onOk(toRaw(formState));
+        emit("submit", toRaw(formState));
         return Promise.resolve();
       } else {
         next();
@@ -95,6 +107,22 @@ export default defineComponent({
       return !props.bot.id;
     });
 
+    // TODO: 应该请求后端获得支持的平台
+    const allowedPlatforms = ref([
+      {
+        label: "QQ",
+        value: "qq",
+      },
+      {
+        label: "Discord",
+        value: "discord",
+      },
+      {
+        label: "Telegram",
+        value: "telegram",
+      },
+    ]);
+
     return {
       current,
       next,
@@ -104,6 +132,7 @@ export default defineComponent({
       formRef,
       onOkInternal,
       creating,
+      allowedPlatforms,
     };
   },
 });

@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import CardBotTable from "../components/Cards/CardBotTable";
+import CardBotTable from "@/components/Cards/CardBotTable";
 
 export default {
   components: {

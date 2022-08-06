@@ -1029,6 +1029,11 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
+"@iconify/types@^2.0.0-beta.1":
+  version "2.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@iconify/types/-/types-2.0.0-beta.1.tgz#0e5f7046336c50ecd7b956157ded03722f02d1ed"
+  integrity sha512-M8I8ReRIEj4oIddjUjw3CoKv1wfSX2F3CIDjn3RwxQSOz2nG7/s5r5BJxRHwr+t7p0RPkbyiR640/FQPDZjeYg==
+
 "@jridgewell/gen-mapping@^0.1.0":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@jridgewell/gen-mapping/-/gen-mapping-0.1.1.tgz#e5d2e450306a9491e3bd77e323e38d7aff315996"
@@ -4122,6 +4127,13 @@ humanize-ms@^1.2.1:
   integrity sha512-Fl70vYtsAFb/C06PTS9dZBo7ihau+Tu/DNCk/OyHhea07S+aeMWpFFkUaXRa8fI+ScZbEI8dfSxwY7gxZ9SAVQ==
   dependencies:
     ms "^2.0.0"
+
+iconify-icon@^1.0.0-beta.2:
+  version "1.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/iconify-icon/-/iconify-icon-1.0.0-beta.2.tgz#1cccd0fbacf55b379575b04c2dc651f98a0d1e44"
+  integrity sha512-a1MgokCwYqGLBzhsh7xceMEZ2r7CmT3Bh9Ce+23ww5/60fAl7ZvWm8jt98sEXXvGoAak/Qw+0cVpBR1QHAeQoA==
+  dependencies:
+    "@iconify/types" "^2.0.0-beta.1"
 
 iconv-lite@0.4.24:
   version "0.4.24"

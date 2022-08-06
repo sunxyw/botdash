@@ -26,38 +26,23 @@
       <a-menu-item>
         <router-link to="/dashboard">
           <span class="icon">
-            <svg
-              width="20"
+            <iconify-icon
+              icon="icon-park-twotone:dashboard-one"
               height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M3 4C3 3.44772 3.44772 3 4 3H16C16.5523 3 17 3.44772 17 4V6C17 6.55228 16.5523 7 16 7H4C3.44772 7 3 6.55228 3 6V4Z"
-                fill="#111827"
-              />
-              <path
-                d="M3 10C3 9.44771 3.44772 9 4 9H10C10.5523 9 11 9.44771 11 10V16C11 16.5523 10.5523 17 10 17H4C3.44772 17 3 16.5523 3 16V10Z"
-                fill="#111827"
-              />
-              <path
-                d="M14 9C13.4477 9 13 9.44771 13 10V16C13 16.5523 13.4477 17 14 17H16C16.5523 17 17 16.5523 17 16V10C17 9.44771 16.5523 9 16 9H14Z"
-                fill="#111827"
-              />
-            </svg>
+              width="20"
+            ></iconify-icon>
           </span>
           <span class="label">面板</span>
         </router-link>
       </a-menu-item>
       <a-menu-item>
-        <router-link to="/bots">
+        <router-link to="/bots/list">
           <span class="icon">
-            <svg width="20" height="20" fill="none" viewBox="0 0 640 512">
-              <path
-                d="M9.375 233.4C3.375 239.4 0 247.5 0 256v128c0 8.5 3.375 16.62 9.375 22.62S23.5 416 32 416h32V224H32C23.5 224 15.38 227.4 9.375 233.4zM464 96H352V32c0-17.62-14.38-32-32-32S288 14.38 288 32v64H176C131.8 96 96 131.8 96 176V448c0 35.38 28.62 64 64 64h320c35.38 0 64-28.62 64-64V176C544 131.8 508.3 96 464 96zM256 416H192v-32h64V416zM224 296C201.9 296 184 278.1 184 256S201.9 216 224 216S264 233.9 264 256S246.1 296 224 296zM352 416H288v-32h64V416zM448 416h-64v-32h64V416zM416 296c-22.12 0-40-17.88-40-40S393.9 216 416 216S456 233.9 456 256S438.1 296 416 296zM630.6 233.4C624.6 227.4 616.5 224 608 224h-32v192h32c8.5 0 16.62-3.375 22.62-9.375S640 392.5 640 384V256C640 247.5 636.6 239.4 630.6 233.4z"
-              />
-            </svg>
+            <iconify-icon
+              icon="icon-park-twotone:robot-one"
+              height="20"
+              width="20"
+            ></iconify-icon>
           </span>
           <span class="label">机器人</span>
         </router-link>
@@ -65,16 +50,16 @@
       <a-menu-item>
         <router-link to="/dependencies">
           <span class="icon">
-            <svg width="20" height="20" fill="none" viewBox="0 0 512 512">
-              <path
-                d="M32 432C32 458.5 53.49 480 80 480h352c26.51 0 48-21.49 48-48V160H32V432zM160 236C160 229.4 165.4 224 172 224h168C346.6 224 352 229.4 352 236v8C352 250.6 346.6 256 340 256h-168C165.4 256 160 250.6 160 244V236zM480 32H32C14.31 32 0 46.31 0 64v48C0 120.8 7.188 128 16 128h480C504.8 128 512 120.8 512 112V64C512 46.31 497.7 32 480 32z"
-              />
-            </svg>
+            <iconify-icon
+              icon="icon-park-twotone:application-one"
+              height="20"
+              width="20"
+            ></iconify-icon>
           </span>
           <span class="label">依赖管理</span>
         </router-link>
       </a-menu-item>
-      <!-- <a-menu-item class="menu-item-header"> Account Pages </a-menu-item> -->
+      <a-menu-item class="menu-item-header">开发中...</a-menu-item>
     </a-menu>
     <!-- / 侧边栏导航菜单 -->
 
@@ -153,3 +138,13 @@ export default {
   emits: ["toggleSidebar"],
 };
 </script>
+
+<style scoped>
+iconify-icon {
+  color: #bfbfbf;
+}
+
+.router-link-active iconify-icon {
+  color: #fff;
+}
+</style>
